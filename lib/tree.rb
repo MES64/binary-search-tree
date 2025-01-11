@@ -27,8 +27,9 @@ class Tree
   def stringify(node: @root, prefix: '', is_left: true)
     return '' if node.nil?
 
-    tree_string = stringify(node: node.right, prefix: "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false)
-    tree_string += "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}\n"
-    tree_string + stringify(node: node.left, prefix: "#{prefix}#{is_left ? '    ' : '│   '}", is_left: true)
+    right_subtree = stringify(node: node.right, prefix: "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false)
+    current_node = "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}\n"
+    left_subtree = stringify(node: node.left, prefix: "#{prefix}#{is_left ? '    ' : '│   '}", is_left: true)
+    "#{right_subtree}#{current_node}#{left_subtree}"
   end
 end
