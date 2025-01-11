@@ -8,6 +8,19 @@ class Tree
     @root = build_tree(data_array.uniq.sort)
   end
 
+  def insert(data)
+    node = Node.new(data)
+    @root = node if @root.nil?
+    current = @root
+    until current == node
+      add_next = node < current ? :left= : :right=
+      next_node = add_next[...-1]
+      current.send add_next, node unless current.send next_node
+      current = current.send next_node
+    end
+    self
+  end
+
   def to_s
     stringify
   end

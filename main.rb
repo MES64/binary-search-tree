@@ -6,9 +6,14 @@ numbers = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 words = %w[hello goodbye world Alfie alfie boo good gooey alfie
            brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr]
 
+word_tree = Tree.new(words)
+puts word_tree
 puts Tree.new
 puts Tree.new([1])
 tree = Tree.new(numbers)
 puts tree
-word_tree = Tree.new(words)
-puts word_tree
+
+tree.insert(1000)
+puts tree
+puts Tree.new([1]).insert(2).insert(0).insert(1).insert(2).insert(2000).insert(4000)
+puts Tree.new.insert(1).insert(2).insert(3)
