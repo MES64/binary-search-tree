@@ -17,3 +17,16 @@ tree.insert(1000)
 puts tree
 puts Tree.new([1]).insert(2).insert(0).insert(1).insert(2).insert(2000).insert(4000)
 puts Tree.new.insert(1).insert(2).insert(3)
+
+tree = Tree.new(numbers)
+puts tree
+puts tree.find(8)
+puts tree.find(6)
+puts Tree.new([1]).find(1)
+puts Tree.new([1]).find(2)
+puts Tree.new.find(1)
+# puts tree.locate(Node.new(8))
+# puts tree.locate(Node.new(6))
+# puts Tree.new([1]).locate(Node.new(1))
+# puts Tree.new([1]).locate(Node.new(2))
+# puts Tree.new([]).locate(Node.new(1))

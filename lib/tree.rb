@@ -21,11 +21,29 @@ class Tree
     self
   end
 
+  def find(data)
+    node = Node.new(data)
+    found_node = locate(node)
+    return found_node if found_node == node
+
+    nil
+  end
+
   def to_s
     stringify
   end
 
   private
+
+  def locate(node)
+    current = nil
+    next_node = @root
+    until current == node || next_node.nil?
+      current = next_node
+      next_node = node < current ? current.left : current.right
+    end
+    current
+  end
 
   def build_tree(sorted_data)
     return nil if sorted_data.empty?
