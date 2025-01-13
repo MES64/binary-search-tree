@@ -11,13 +11,11 @@ class Tree
   def insert(data)
     node = Node.new(data)
     @root = node if @root.nil?
-    current = @root
-    until current == node
-      add_next = node < current ? :left= : :right=
-      next_node = add_next[...-1]
-      current.send add_next, node unless current.send next_node
-      current = current.send next_node
-    end
+    found_node = locate_nearest(node)
+    return self if found_node == node
+
+    add = node < found_node ? :left= : :right=
+    found_node.send add, node
     self
   end
 
