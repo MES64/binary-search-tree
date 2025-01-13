@@ -17,6 +17,6 @@ class Node
   end
 
   def to_s
-    @data.to_s
+    "Node(#{@data})"
   end
 end
