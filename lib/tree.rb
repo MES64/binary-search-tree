@@ -23,7 +23,7 @@ class Tree
 
   def find(data)
     node = Node.new(data)
-    found_node = locate(node)
+    found_node = locate_nearest(node)
     return found_node if found_node == node
 
     nil
@@ -35,7 +35,7 @@ class Tree
 
   private
 
-  def locate(node)
+  def locate_nearest(node)
     current = nil
     next_node = @root
     until current == node || next_node.nil?
