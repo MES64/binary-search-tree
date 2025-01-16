@@ -1,30 +1,39 @@
 # frozen_string_literal: true
 
 require_relative 'node'
+require_relative 'parent'
 
 # Tree class
 class Tree
+  private
+
+  attr_writer :root
+
+  public
+
+  attr_reader :root
+
   def initialize(data_array = [])
     @root = build_tree(data_array.uniq.sort)
   end
 
   def insert(data)
     node = Node.new(data)
-    @root = node if @root.nil?
-    found_node = locate_nearest(node)
-    return self if found_node == node
+    self.root = node if root.nil?
+    return self if root == node
 
-    add = node < found_node ? :left= : :right=
-    found_node.send add, node
+    parent = Parent.new(root, node)
+    parent.child = node if parent.child.nil?
     self
   end
 
   def find(data)
     node = Node.new(data)
-    found_node = locate_nearest(node)
-    return found_node if found_node == node
+    return nil if root.nil?
+    return root if root == node
 
-    nil
+    parent = Parent.new(root, node)
+    parent.child
   end
 
   def to_s
@@ -32,16 +41,6 @@ class Tree
   end
 
   private
-
-  def locate_nearest(node)
-    current = nil
-    next_node = @root
-    until current == node || next_node.nil?
-      current = next_node
-      next_node = node < current ? current.left : current.right
-    end
-    current
-  end
 
   def build_tree(sorted_data)
     return nil if sorted_data.empty?
@@ -53,7 +52,7 @@ class Tree
     node
   end
 
-  def stringify(node: @root, prefix: '', is_left: true)
+  def stringify(node: root, prefix: '', is_left: true)
     return '' if node.nil?
 
     right_subtree = stringify(node: node.right, prefix: "#{prefix}#{is_left ? '│   ' : '    '}", is_left: false)

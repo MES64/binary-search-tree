@@ -17,6 +17,6 @@ class Node
   end
 
   def to_s
-    "Node(#{@data})"
+    "Node(#{data})"
   end
 end
