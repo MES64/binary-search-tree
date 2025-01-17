@@ -3,8 +3,9 @@
 require_relative 'lib/tree'
 
 numbers = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-words = %w[hello goodbye world Alfie alfie boo good gooey alfie
-           brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr]
+
+# words = %w[hello goodbye world Alfie alfie boo good gooey alfie
+#           brrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr]
 
 # puts 'Init:'
 # word_tree = Tree.new(words)
@@ -34,12 +35,11 @@ words = %w[hello goodbye world Alfie alfie boo good gooey alfie
 
 def test(tree, data)
   puts tree
-  puts tree.find(data)
+  puts tree.insert(data)
+  puts tree
 end
 
-tree = Tree.new(numbers)
-
-puts 'Find:'
+puts 'Insert:'
 puts 'Empty Tree:'
 test(Tree.new, 8)
 
@@ -50,12 +50,15 @@ puts '1-node tree: nil node:'
 test(Tree.new([8]), 6)
 
 puts 'n-node tree: at root node:'
-test(tree, 8)
+test(Tree.new(numbers), 8)
 
 puts 'n-node tree: non-root node in tree:'
-test(tree, 5)
+test(Tree.new(numbers), 5)
 
 puts 'n-node tree: nil node:'
-test(tree, 2)
+test(Tree.new(numbers), 2)
 
-# TODO: Test insert, then do delete
+puts 'Chain:'
+puts Tree.new(numbers).insert(1).insert(2).insert(3).insert(1000).insert(8)
+
+# TODO: delete()
