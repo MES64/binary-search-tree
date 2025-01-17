@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require_relative 'lib/tree'
-require_relative 'lib/parent'
 
 numbers = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 words = %w[hello goodbye world Alfie alfie boo good gooey alfie
@@ -33,37 +32,30 @@ words = %w[hello goodbye world Alfie alfie boo good gooey alfie
 # puts word_tree.find('boo')
 # puts word_tree.find('')
 
-def test_parent(tree, search_node, insert_node)
+def test(tree, data)
   puts tree
-  parent = Parent.new(tree.root, search_node)
-  puts parent.parent
-  puts parent.direction
-  puts parent.add
-  puts parent.child
-  parent.child = insert_node
-  puts parent.child
-  puts tree
+  puts tree.find(data)
 end
 
-puts 'Parent:'
-node1 = Node.new(8)
-node2 = Node.new(324)
-node3 = Node.new(88)
+tree = Tree.new(numbers)
 
+puts 'Find:'
 puts 'Empty Tree:'
-test_parent(Tree.new, node1, node3)
+test(Tree.new, 8)
 
-puts '1-node tree: parent of root node:'
-test_parent(Tree.new([8]), node1, node3)
+puts '1-node tree: at root node:'
+test(Tree.new([8]), 8)
 
-puts '1-node tree: nil child:'
-test_parent(Tree.new([8]), node2, node3)
+puts '1-node tree: nil node:'
+test(Tree.new([8]), 6)
 
-puts 'n-node tree: parent of root node:'
-test_parent(Tree.new(numbers), node1, node3)
+puts 'n-node tree: at root node:'
+test(tree, 8)
 
-puts 'n-node tree: parent of non-root node in tree:'
-test_parent(Tree.new(numbers), node2, node3)
+puts 'n-node tree: non-root node in tree:'
+test(tree, 5)
 
-puts 'n-node tree: nil child:'
-test_parent(Tree.new(numbers), node3, node1)
+puts 'n-node tree: nil node:'
+test(tree, 2)
+
+# TODO: Test insert, then do delete

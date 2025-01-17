@@ -28,8 +28,9 @@ class Tree
   end
 
   def find(data)
-    node = Node.new(data)
     return nil if root.nil?
+
+    node = Node.new(data)
     return root if root == node
 
     parent = Parent.new(root, node)
